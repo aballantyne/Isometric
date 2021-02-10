@@ -1,5 +1,5 @@
-# Isometric
-My second game. 
+# IsometriM
+This is a unity project and my second game. 
 
 # Scripts
 You can find the scripts in Isometric/Assets/scripts/
