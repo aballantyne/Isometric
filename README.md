@@ -1,4 +1,4 @@
-# IsometriM
+# Isometric
 This is a unity project and my second game. 
 
 # Scripts
