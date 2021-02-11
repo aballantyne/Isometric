@@ -1,26 +1,60 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using System.Linq;
+using System;  
+
 public class blockbuilder : MonoBehaviour
 {  
   private bool onGround;
-  public bool building = false;
+  
 
-	float[,] array2D = new float[,] {{-6.25f, -3f}, {-6.25f, -2.75f}, {-6.25f, -2.5f}, {-6.25f, -2.25f}, {-6.25f, -2f}, {-6.25f, -1.75f}, {-6.25f, -1.5f}, {-6.25f, -1.25f}, {-6.25f, -1f}, {-6.25f, -0.75f}, {-6.25f, -0.5f}, {-6.25f, -0.25f}, {-6.25f, 0f}, {-6.25f, 0.25f}, {-6.25f, 0.5f}, {-6.25f, 0.75f}, {-6.25f, 1f}, {-6.25f, 1.25f}, {-6.25f, 1.5f}, {-6.25f, 1.75f}, {-6.25f, 2f}, {-6.25f, 2.25f}, {-6.25f, 2.5f}, {-6.25f, 2.75f}, {-6.25f, 3f}, {-5.75f, -3f}, {-5.75f, -2.75f}, {-5.75f, -2.5f}, {-5.75f, -2.25f}, {-5.75f, -2f}, {-5.75f, -1.75f}, {-5.75f, -1.5f}, {-5.75f, -1.25f}, {-5.75f, -1f}, {-5.75f, -0.75f}, {-5.75f, -0.5f}, {-5.75f, -0.25f}, {-5.75f, 0f}, {-5.75f, 0.25f}, {-5.75f, 0.5f}, {-5.75f, 0.75f}, {-5.75f, 1f}, {-5.75f, 1.25f}, {-5.75f, 1.5f}, {-5.75f, 1.75f}, {-5.75f, 2f}, {-5.75f, 2.25f}, {-5.75f, 2.5f}, {-5.75f, 2.75f}, {-5.75f, 3f}, {-5.25f, -3f}, {-5.25f, -2.75f}, {-5.25f, -2.5f}, {-5.25f, -2.25f}, {-5.25f, -2f}, {-5.25f, -1.75f}, {-5.25f, -1.5f}, {-5.25f, -1.25f}, {-5.25f, -1f}, {-5.25f, -0.75f}, {-5.25f, -0.5f}, {-5.25f, -0.25f}, {-5.25f, 0f}, {-5.25f, 0.25f}, {-5.25f, 0.5f}, {-5.25f, 0.75f}, {-5.25f, 1f}, {-5.25f, 1.25f}, {-5.25f, 1.5f}, {-5.25f, 1.75f}, {-5.25f, 2f}, {-5.25f, 2.25f}, {-5.25f, 2.5f}, {-5.25f, 2.75f}, {-5.25f, 3f}, {-4.75f, -3f}, {-4.75f, -2.75f}, {-4.75f, -2.5f}, {-4.75f, -2.25f}, {-4.75f, -2f}, {-4.75f, -1.75f}, {-4.75f, -1.5f}, {-4.75f, -1.25f}, {-4.75f, -1f}, {-4.75f, -0.75f}, {-4.75f, -0.5f}, {-4.75f, -0.25f}, {-4.75f, 0f}, {-4.75f, 0.25f}, {-4.75f, 0.5f}, {-4.75f, 0.75f}, {-4.75f, 1f}, {-4.75f, 1.25f}, {-4.75f, 1.5f}, {-4.75f, 1.75f}, {-4.75f, 2f}, {-4.75f, 2.25f}, {-4.75f, 2.5f}, {-4.75f, 2.75f}, {-4.75f, 3f}, {-4.25f, -3f}, {-4.25f, -2.75f}, {-4.25f, -2.5f}, {-4.25f, -2.25f}, {-4.25f, -2f}, {-4.25f, -1.75f}, {-4.25f, -1.5f}, {-4.25f, -1.25f}, {-4.25f, -1f}, {-4.25f, -0.75f}, {-4.25f, -0.5f}, {-4.25f, -0.25f}, {-4.25f, 0f}, {-4.25f, 0.25f}, {-4.25f, 0.5f}, {-4.25f, 0.75f}, {-4.25f, 1f}, {-4.25f, 1.25f}, {-4.25f, 1.5f}, {-4.25f, 1.75f}, {-4.25f, 2f}, {-4.25f, 2.25f}, {-4.25f, 2.5f}, {-4.25f, 2.75f}, {-4.25f, 3f}, {-3.75f, -3f}, {-3.75f, -2.75f}, {-3.75f, -2.5f}, {-3.75f, -2.25f}, {-3.75f, -2f}, {-3.75f, -1.75f}, {-3.75f, -1.5f}, {-3.75f, -1.25f}, {-3.75f, -1f}, {-3.75f, -0.75f}, {-3.75f, -0.5f}, {-3.75f, -0.25f}, {-3.75f, 0f}, {-3.75f, 0.25f}, {-3.75f, 0.5f}, {-3.75f, 0.75f}, {-3.75f, 1f}, {-3.75f, 1.25f}, {-3.75f, 1.5f}, {-3.75f, 1.75f}, {-3.75f, 2f}, {-3.75f, 2.25f}, {-3.75f, 2.5f}, {-3.75f, 2.75f}, {-3.75f, 3f}, {-3.25f, -3f}, {-3.25f, -2.75f}, {-3.25f, -2.5f}, {-3.25f, -2.25f}, {-3.25f, -2f}, {-3.25f, -1.75f}, {-3.25f, -1.5f}, {-3.25f, -1.25f}, {-3.25f, -1f}, {-3.25f, -0.75f}, {-3.25f, -0.5f}, {-3.25f, -0.25f}, {-3.25f, 0f}, {-3.25f, 0.25f}, {-3.25f, 0.5f}, {-3.25f, 0.75f}, {-3.25f, 1f}, {-3.25f, 1.25f}, {-3.25f, 1.5f}, {-3.25f, 1.75f}, {-3.25f, 2f}, {-3.25f, 2.25f}, {-3.25f, 2.5f}, {-3.25f, 2.75f}, {-3.25f, 3f}, {-2.75f, -3f}, {-2.75f, -2.75f}, {-2.75f, -2.5f}, {-2.75f, -2.25f}, {-2.75f, -2f}, {-2.75f, -1.75f}, {-2.75f, -1.5f}, {-2.75f, -1.25f}, {-2.75f, -1f}, {-2.75f, -0.75f}, {-2.75f, -0.5f}, {-2.75f, -0.25f}, {-2.75f, 0f}, {-2.75f, 0.25f}, {-2.75f, 0.5f}, {-2.75f, 0.75f}, {-2.75f, 1f}, {-2.75f, 1.25f}, {-2.75f, 1.5f}, {-2.75f, 1.75f}, {-2.75f, 2f}, {-2.75f, 2.25f}, {-2.75f, 2.5f}, {-2.75f, 2.75f}, {-2.75f, 3f}, {-2.25f, -3f}, {-2.25f, -2.75f}, {-2.25f, -2.5f}, {-2.25f, -2.25f}, {-2.25f, -2f}, {-2.25f, -1.75f}, {-2.25f, -1.5f}, {-2.25f, -1.25f}, {-2.25f, -1f}, {-2.25f, -0.75f}, {-2.25f, -0.5f}, {-2.25f, -0.25f}, {-2.25f, 0f}, {-2.25f, 0.25f}, {-2.25f, 0.5f}, {-2.25f, 0.75f}, {-2.25f, 1f}, {-2.25f, 1.25f}, {-2.25f, 1.5f}, {-2.25f, 1.75f}, {-2.25f, 2f}, {-2.25f, 2.25f}, {-2.25f, 2.5f}, {-2.25f, 2.75f}, {-2.25f, 3f}, {-1.75f, -3f}, {-1.75f, -2.75f}, {-1.75f, -2.5f}, {-1.75f, -2.25f}, {-1.75f, -2f}, {-1.75f, -1.75f}, {-1.75f, -1.5f}, {-1.75f, -1.25f}, {-1.75f, -1f}, {-1.75f, -0.75f}, {-1.75f, -0.5f}, {-1.75f, -0.25f}, {-1.75f, 0f}, {-1.75f, 0.25f}, {-1.75f, 0.5f}, {-1.75f, 0.75f}, {-1.75f, 1f}, {-1.75f, 1.25f}, {-1.75f, 1.5f}, {-1.75f, 1.75f}, {-1.75f, 2f}, {-1.75f, 2.25f}, {-1.75f, 2.5f}, {-1.75f, 2.75f}, {-1.75f, 3f}, {-1.25f, -3f}, {-1.25f, -2.75f}, {-1.25f, -2.5f}, {-1.25f, -2.25f}, {-1.25f, -2f}, {-1.25f, -1.75f}, {-1.25f, -1.5f}, {-1.25f, -1.25f}, {-1.25f, -1f}, {-1.25f, -0.75f}, {-1.25f, -0.5f}, {-1.25f, -0.25f}, {-1.25f, 0f}, {-1.25f, 0.25f}, {-1.25f, 0.5f}, {-1.25f, 0.75f}, {-1.25f, 1f}, {-1.25f, 1.25f}, {-1.25f, 1.5f}, {-1.25f, 1.75f}, {-1.25f, 2f}, {-1.25f, 2.25f}, {-1.25f, 2.5f}, {-1.25f, 2.75f}, {-1.25f, 3f}, {-0.75f, -3f}, {-0.75f, -2.75f}, {-0.75f, -2.5f}, {-0.75f, -2.25f}, {-0.75f, -2f}, {-0.75f, -1.75f}, {-0.75f, -1.5f}, {-0.75f, -1.25f}, {-0.75f, -1f}, {-0.75f, -0.75f}, {-0.75f, -0.5f}, {-0.75f, -0.25f}, {-0.75f, 0f}, {-0.75f, 0.25f}, {-0.75f, 0.5f}, {-0.75f, 0.75f}, {-0.75f, 1f}, {-0.75f, 1.25f}, {-0.75f, 1.5f}, {-0.75f, 1.75f}, {-0.75f, 2f}, {-0.75f, 2.25f}, {-0.75f, 2.5f}, {-0.75f, 2.75f}, {-0.75f, 3f}, {-0.25f, -3f}, {-0.25f, -2.75f}, {-0.25f, -2.5f}, {-0.25f, -2.25f}, {-0.25f, -2f}, {-0.25f, -1.75f}, {-0.25f, -1.5f}, {-0.25f, -1.25f}, {-0.25f, -1f}, {-0.25f, -0.75f}, {-0.25f, -0.5f}, {-0.25f, -0.25f}, {-0.25f, 0f}, {-0.25f, 0.25f}, {-0.25f, 0.5f}, {-0.25f, 0.75f}, {-0.25f, 1f}, {-0.25f, 1.25f}, {-0.25f, 1.5f}, {-0.25f, 1.75f}, {-0.25f, 2f}, {-0.25f, 2.25f}, {-0.25f, 2.5f}, {-0.25f, 2.75f}, {-0.25f, 3f}, {0.25f, -3f}, {0.25f, -2.75f}, {0.25f, -2.5f}, {0.25f, -2.25f}, {0.25f, -2f}, {0.25f, -1.75f}, {0.25f, -1.5f}, {0.25f, -1.25f}, {0.25f, -1f}, {0.25f, -0.75f}, {0.25f, -0.5f}, {0.25f, -0.25f}, {0.25f, 0f}, {0.25f, 0.25f}, {0.25f, 0.5f}, {0.25f, 0.75f}, {0.25f, 1f}, {0.25f, 1.25f}, {0.25f, 1.5f}, {0.25f, 1.75f}, {0.25f, 2f}, {0.25f, 2.25f}, {0.25f, 2.5f}, {0.25f, 2.75f}, {0.25f, 3f}, {0.75f, -3f}, {0.75f, -2.75f}, {0.75f, -2.5f}, {0.75f, -2.25f}, {0.75f, -2f}, {0.75f, -1.75f}, {0.75f, -1.5f}, {0.75f, -1.25f}, {0.75f, -1f}, {0.75f, -0.75f}, {0.75f, -0.5f}, {0.75f, -0.25f}, {0.75f, 0f}, {0.75f, 0.25f}, {0.75f, 0.5f}, {0.75f, 0.75f}, {0.75f, 1f}, {0.75f, 1.25f}, {0.75f, 1.5f}, {0.75f, 1.75f}, {0.75f, 2f}, {0.75f, 2.25f}, {0.75f, 2.5f}, {0.75f, 2.75f}, {0.75f, 3f}, {1.25f, -3f}, {1.25f, -2.75f}, {1.25f, -2.5f}, {1.25f, -2.25f}, {1.25f, -2f}, {1.25f, -1.75f}, {1.25f, -1.5f}, {1.25f, -1.25f}, {1.25f, -1f}, {1.25f, -0.75f}, {1.25f, -0.5f}, {1.25f, -0.25f}, {1.25f, 0f}, {1.25f, 0.25f}, {1.25f, 0.5f}, {1.25f, 0.75f}, {1.25f, 1f}, {1.25f, 1.25f}, {1.25f, 1.5f}, {1.25f, 1.75f}, {1.25f, 2f}, {1.25f, 2.25f}, {1.25f, 2.5f}, {1.25f, 2.75f}, {1.25f, 3f}, {1.75f, -3f}, {1.75f, -2.75f}, {1.75f, -2.5f}, {1.75f, -2.25f}, {1.75f, -2f}, {1.75f, -1.75f}, {1.75f, -1.5f}, {1.75f, -1.25f}, {1.75f, -1f}, {1.75f, -0.75f}, {1.75f, -0.5f}, {1.75f, -0.25f}, {1.75f, 0f}, {1.75f, 0.25f}, {1.75f, 0.5f}, {1.75f, 0.75f}, {1.75f, 1f}, {1.75f, 1.25f}, {1.75f, 1.5f}, {1.75f, 1.75f}, {1.75f, 2f}, {1.75f, 2.25f}, {1.75f, 2.5f}, {1.75f, 2.75f}, {1.75f, 3f}, {2.25f, -3f}, {2.25f, -2.75f}, {2.25f, -2.5f}, {2.25f, -2.25f}, {2.25f, -2f}, {2.25f, -1.75f}, {2.25f, -1.5f}, {2.25f, -1.25f}, {2.25f, -1f}, {2.25f, -0.75f}, {2.25f, -0.5f}, {2.25f, -0.25f}, {2.25f, 0f}, {2.25f, 0.25f}, {2.25f, 0.5f}, {2.25f, 0.75f}, {2.25f, 1f}, {2.25f, 1.25f}, {2.25f, 1.5f}, {2.25f, 1.75f}, {2.25f, 2f}, {2.25f, 2.25f}, {2.25f, 2.5f}, {2.25f, 2.75f}, {2.25f, 3f}, {2.75f, -3f}, {2.75f, -2.75f}, {2.75f, -2.5f}, {2.75f, -2.25f}, {2.75f, -2f}, {2.75f, -1.75f}, {2.75f, -1.5f}, {2.75f, -1.25f}, {2.75f, -1f}, {2.75f, -0.75f}, {2.75f, -0.5f}, {2.75f, -0.25f}, {2.75f, 0f}, {2.75f, 0.25f}, {2.75f, 0.5f}, {2.75f, 0.75f}, {2.75f, 1f}, {2.75f, 1.25f}, {2.75f, 1.5f}, {2.75f, 1.75f}, {2.75f, 2f}, {2.75f, 2.25f}, {2.75f, 2.5f}, {2.75f, 2.75f}, {2.75f, 3f}, {3.25f, -3f}, {3.25f, -2.75f}, {3.25f, -2.5f}, {3.25f, -2.25f}, {3.25f, -2f}, {3.25f, -1.75f}, {3.25f, -1.5f}, {3.25f, -1.25f}, {3.25f, -1f}, {3.25f, -0.75f}, {3.25f, -0.5f}, {3.25f, -0.25f}, {3.25f, 0f}, {3.25f, 0.25f}, {3.25f, 0.5f}, {3.25f, 0.75f}, {3.25f, 1f}, {3.25f, 1.25f}, {3.25f, 1.5f}, {3.25f, 1.75f}, {3.25f, 2f}, {3.25f, 2.25f}, {3.25f, 2.5f}, {3.25f, 2.75f}, {3.25f, 3f}, {3.75f, -3f}, {3.75f, -2.75f}, {3.75f, -2.5f}, {3.75f, -2.25f}, {3.75f, -2f}, {3.75f, -1.75f}, {3.75f, -1.5f}, {3.75f, -1.25f}, {3.75f, -1f}, {3.75f, -0.75f}, {3.75f, -0.5f}, {3.75f, -0.25f}, {3.75f, 0f}, {3.75f, 0.25f}, {3.75f, 0.5f}, {3.75f, 0.75f}, {3.75f, 1f}, {3.75f, 1.25f}, {3.75f, 1.5f}, {3.75f, 1.75f}, {3.75f, 2f}, {3.75f, 2.25f}, {3.75f, 2.5f}, {3.75f, 2.75f}, {3.75f, 3f}, {4.25f, -3f}, {4.25f, -2.75f}, {4.25f, -2.5f}, {4.25f, -2.25f}, {4.25f, -2f}, {4.25f, -1.75f}, {4.25f, -1.5f}, {4.25f, -1.25f}, {4.25f, -1f}, {4.25f, -0.75f}, {4.25f, -0.5f}, {4.25f, -0.25f}, {4.25f, 0f}, {4.25f, 0.25f}, {4.25f, 0.5f}, {4.25f, 0.75f}, {4.25f, 1f}, {4.25f, 1.25f}, {4.25f, 1.5f}, {4.25f, 1.75f}, {4.25f, 2f}, {4.25f, 2.25f}, {4.25f, 2.5f}, {4.25f, 2.75f}, {4.25f, 3f}, {4.75f, -3f}, {4.75f, -2.75f}, {4.75f, -2.5f}, {4.75f, -2.25f}, {4.75f, -2f}, {4.75f, -1.75f}, {4.75f, -1.5f}, {4.75f, -1.25f}, {4.75f, -1f}, {4.75f, -0.75f}, {4.75f, -0.5f}, {4.75f, -0.25f}, {4.75f, 0f}, {4.75f, 0.25f}, {4.75f, 0.5f}, {4.75f, 0.75f}, {4.75f, 1f}, {4.75f, 1.25f}, {4.75f, 1.5f}, {4.75f, 1.75f}, {4.75f, 2f}, {4.75f, 2.25f}, {4.75f, 2.5f}, {4.75f, 2.75f}, {4.75f, 3f}, {5.25f, -3f}, {5.25f, -2.75f}, {5.25f, -2.5f}, {5.25f, -2.25f}, {5.25f, -2f}, {5.25f, -1.75f}, {5.25f, -1.5f}, {5.25f, -1.25f}, {5.25f, -1f}, {5.25f, -0.75f}, {5.25f, -0.5f}, {5.25f, -0.25f}, {5.25f, 0f}, {5.25f, 0.25f}, {5.25f, 0.5f}, {5.25f, 0.75f}, {5.25f, 1f}, {5.25f, 1.25f}, {5.25f, 1.5f}, {5.25f, 1.75f}, {5.25f, 2f}, {5.25f, 2.25f}, {5.25f, 2.5f}, {5.25f, 2.75f}, {5.25f, 3f}, {5.75f, -3f}, {5.75f, -2.75f}, {5.75f, -2.5f}, {5.75f, -2.25f}, {5.75f, -2f}, {5.75f, -1.75f}, {5.75f, -1.5f}, {5.75f, -1.25f}, {5.75f, -1f}, {5.75f, -0.75f}, {5.75f, -0.5f}, {5.75f, -0.25f}, {5.75f, 0f}, {5.75f, 0.25f}, {5.75f, 0.5f}, {5.75f, 0.75f}, {5.75f, 1f}, {5.75f, 1.25f}, {5.75f, 1.5f}, {5.75f, 1.75f}, {5.75f, 2f}, {5.75f, 2.25f}, {5.75f, 2.5f}, {5.75f, 2.75f}, {5.75f, 3f}};
+	new List<Vector2> avalable = new List<Vector2>();
+  new List<Vector2> unavalable = new List<Vector2>();
   float x = 5.0f;
 	float y = 8.0f;
+  float ax;
+  float ay;
 
 	Vector2 endPosition;
 	Vector2 buildingPosition;
 	Vector2 saved;
 
   public GameObject block;
+
+  int avalableLenth;
+
+  Vector2 topRight;
+  Vector2 topLeft;
+  Vector2 bottomRight;
+  Vector2 bottomLeft;
+
+  private bool workingtopRight;
+  private bool workingtopLeft;
+  private bool workingbottomRight;
+  private bool workingbottomLeft;
   void Awake(){
     buildingPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     saved = buildingPosition;
     move();
+    // this sets up all the start positions 
+    ax =  0.5f;
+    ay =  0.25f;
+    topRight = new Vector2(ax, ay);
+    ax = -0.5f;
+    ay = 0.25f;
+    topLeft = new Vector2(ax, ay);
+    ax = 0.5f;
+    ay = -0.25f;
+    bottomRight = new Vector2(ax, ay);
+    ax = -0.5f;
+    ay = -0.25f;
+    bottomLeft = new Vector2(ax, ay);
+    avalable.Add(topRight);
+    avalable.Add(topLeft);
+    avalable.Add(bottomRight);
+    avalable.Add(bottomLeft);
+
+    unavalable.Add(new Vector2(0,0));
   }
   void Update()
   {
@@ -32,6 +66,8 @@ public class blockbuilder : MonoBehaviour
     transform.position = endPosition;
     if (Input.GetMouseButtonDown(0)){
       Instantiate(block, endPosition, Quaternion.identity);
+      listUpdate();
+      move();
     }
 
     }
@@ -48,37 +84,87 @@ public class blockbuilder : MonoBehaviour
    	x = buildingPosition.x;
    	y = buildingPosition.y;
    	float min = 10000.0f;
-   	for( int i = 0; i < 625; i++)
+    avalableLenth = avalable.Count;
+   	for( int i = 0; i < avalableLenth; i++)
    	{
-   		float d= distance(x,y, array2D[i,0], array2D[i,1]); 
+
+   		float d= distance(x,y, avalable[i].x, avalable[i].y); 
    		if(d < min){
         min = d;  
-        if (building == false){
-          
-            endPosition = new Vector2(array2D[i,0], array2D[i,1]);
-          
-        }else {
-          
-            endPosition = new Vector2(array2D[i,0], array2D[i,1]);
-          
-        }
+        endPosition = new Vector2(avalable[i].x, avalable[i].y);
+
     }
   }
+  }
+  void listUpdate(){
 
- }
-  void OnCollisionEnter2D(Collision2D col)
-    {
+    workingtopRight = true;
+    workingtopLeft = true;
+    workingbottomRight = true;
+    workingbottomLeft = true;
+
+    unavalable.Add(endPosition);
+    avalable.Remove(endPosition);
+    avalable.Remove(endPosition);
+    avalable.Remove(endPosition);
+    avalable.Remove(endPosition);
+    //This adds more places 
+    ax = endPosition.x + 0.5f;
+    ay = endPosition.y + 0.25f;
+    topRight = new Vector2(ax, ay);
+    ax = endPosition.x - 0.5f;
+    ay = endPosition.y + 0.25f;
+    topLeft = new Vector2(ax, ay);
+    ax = endPosition.x + 0.5f;
+    ay = endPosition.y - 0.25f;
+    bottomRight = new Vector2(ax, ay);
+    ax = endPosition.x - 0.5f;
+    ay = endPosition.y - 0.25f;
+    bottomLeft = new Vector2(ax, ay);
+    int unavalableLength = unavalable.Count;
+    
+    for(int i = 0; i < unavalableLength; i++){
       
-        onGround = true;
-        Debug.Log(onGround);
-      
-    } 
-    void OnCollisionExit2D(Collision2D col)
-    {
-      
-      
-        onGround = false;
+      if (nearlyEquals(topRight.x,unavalable[i].x) && nearlyEquals(topRight.y,unavalable[i].y)){
+        workingtopRight = false;
         
-      
+      }
+      if (nearlyEquals(topLeft.x,unavalable[i].x) && nearlyEquals(topLeft.y,unavalable[i].y)){
+        workingtopLeft = false ;
+        
+      }
+      if (nearlyEquals(bottomRight.x,unavalable[i].x) && nearlyEquals(bottomRight.y,unavalable[i].y)){
+        workingbottomRight = false ;
+        
+      }
+      if (nearlyEquals(bottomLeft.x,unavalable[i].x) && nearlyEquals(bottomLeft.y,unavalable[i].y)){
+        workingbottomLeft = false;
+        
+      }
+
     }
+    if (workingtopRight == true){
+      avalable.Add(topRight);
+    }
+    if (workingtopLeft == true){
+      avalable.Add(topLeft);
+    }
+    if (workingbottomRight == true){
+      avalable.Add(bottomRight);
+    }
+    if (workingbottomLeft == true){
+      avalable.Add(bottomLeft);
+    }
+      
+  }
+
+  bool nearlyEquals(float value1, float value2){
+     double unimportantDifference = 0.0001;
+        if (value1 != value2){
+          return Math.Abs(value1 - value2) < unimportantDifference;
+        }
+        return true;
+  }
+
 }
+  
