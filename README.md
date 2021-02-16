@@ -6,5 +6,5 @@ You can find the scripts in Isometric/Assets/scripts/
 
 right now blockBuilder is the script used most
 
-# TBD
-details of how to run.
+# I started making a path finding algoithom. 
+I'm not done yet.
