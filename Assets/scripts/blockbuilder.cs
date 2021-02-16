@@ -4,12 +4,12 @@ using UnityEngine;
 using System;  
 
 public class blockbuilder : MonoBehaviour
-{  
-  private bool onGround;
+{ 
+
   
 
-	new List<Vector2> avalable = new List<Vector2>();
-  new List<Vector2> unavalable = new List<Vector2>();
+	private new List<Vector2> avalable = new List<Vector2>();
+  private new List<Vector2> unavalable = new List<Vector2>();
   float x = 5.0f;
 	float y = 8.0f;
   float ax;
@@ -20,6 +20,7 @@ public class blockbuilder : MonoBehaviour
 	Vector2 saved;
 
   public GameObject block;
+  public GameObject storage;
 
   int avalableLenth;
 
@@ -65,7 +66,9 @@ public class blockbuilder : MonoBehaviour
     }
     transform.position = endPosition;
     if (Input.GetMouseButtonDown(0)){
-      Instantiate(block, endPosition, Quaternion.identity);
+      GameObject obj = Instantiate(block, endPosition, Quaternion.identity);
+      obj.transform.SetParent(storage.transform);
+      
       listUpdate();
       move();
     }
